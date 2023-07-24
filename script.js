@@ -1,7 +1,6 @@
-const ball = document.querySelector(".ball-img");
+const ball = document.querySelector("img");
 const question = document.querySelector("input");
 const answer = document.querySelector(".answer");
-const error = document.querySelector(".error");
 
 const answer_1 = "Glupie pytanie, zadaj inne!";
 const answer_2 =
@@ -22,7 +21,25 @@ const answerArray = [
 	answer_7,
 	answer_8,
 ];
-answerArray.forEach(answer, i => {
-    answer= i+1;
-    console.log("answer");
-});
+
+function answerHandler(text) {
+    ball.classList.add("rotate-animation");
+	function getRandomIndex(answerArray) {
+		const maxIndex = answerArray.length - 1;
+		return Math.floor(Math.random() * (maxIndex + 1));
+	}
+
+	const randomIndex = getRandomIndex(answerArray);
+	const randomElement = answerArray[randomIndex];
+
+	if (question.value === "") {
+		text = "Zadaj pytanie";
+	} else if (question.value.charAt(question.value.length - 1) != "?") {
+		text = "Pytanie powinno kończyć się znakiem ?";
+	} else {
+		text = randomElement;
+	}
+	answer.innerHTML=text;
+}
+
+ball.addEventListener("click", answerHandler);
