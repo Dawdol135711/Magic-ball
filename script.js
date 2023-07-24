@@ -24,6 +24,9 @@ const answerArray = [
 
 function answerHandler(text) {
     ball.classList.add("rotate-animation");
+    setTimeout(() => {
+        ball.classList.remove("rotate-animation");
+      }, 1000);
 	function getRandomIndex(answerArray) {
 		const maxIndex = answerArray.length - 1;
 		return Math.floor(Math.random() * (maxIndex + 1));
@@ -40,6 +43,7 @@ function answerHandler(text) {
 		text = randomElement;
 	}
 	answer.innerHTML=text;
+    
 }
 
 ball.addEventListener("click", answerHandler);
